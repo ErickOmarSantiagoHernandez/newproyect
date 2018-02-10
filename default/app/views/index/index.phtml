@@ -1,0 +1,25 @@
+<div id="respuesta">
+<?php View::content(); ?>
+  <h2><?php echo (($datos['accion']==2)?'Editar ':$datos['nuevos']).$datos['singular']; ?></h2>
+  <?php echo Ajax::form("respuesta",$datos['modelo'].'/inicia/','','post','id="formulario"') ?>  
+  <?php //echo Form::open($datos['modelo'].'/inicia/','post','id="formulario"') ?>    
+  <?php if ($datos['accion']==2) { echo Form::hidden($datos['modelo'].".id"); }?>    
+  <fieldset>
+  <legend>Datos <?php echo $datos['leyenda'].' '.$datos['singular'];?></legend><br>
+  <label class="ingreso">Exp. Penal : </label>
+  <?php echo Form::text('exppenal','class="required digits" onblur="convierte(this)"') ?><br>
+  <label class="ingreso"><?php echo htmlentities('Año Penal :'); ?></label>
+  <?php echo Form::text('anipenal','class="required digits" onblur="convierte(this)"') ?><br>
+  <label class="ingreso">Juzgado : </label>
+  <?php echo Form::dbSelect('juzgados_id','juzgado',array('juzgados','listar'),'Seleccione','class="required" style="width:500px"') ?><br>
+  <div style="font-size:0;height:1px;"></div>    
+  <label class="ingreso">Tipo Orden :</label>
+  <?php echo Form::dbSelect('tiposoa_id','descripcion',array('tiposoa','listar'),'Seleccione','class="required"') ?><br>  
+  <div style="font-size:0;height:1px;"></div>    
+  <label style="font-size:1px;">.</label>
+  <?php echo Form::submit("Iniciar",'id="btnAccion"')?>
+  <?php $ruta = 'id: cancel id="btnAccion" onclick="cierra()"'; ?>  
+  <?php echo Form::button("Cancelar",$ruta)?>        
+  </fieldset>  
+  <?php echo Form::close(); ?> 
+</div>
