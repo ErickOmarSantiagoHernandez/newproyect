@@ -8,8 +8,8 @@ class Localidades extends ActiveRecord
 	$this->belongs_to('municipios');
   }  
    
-  public function listar($id=2){
-    return $this->find("municipios_id=$id","order: 4 ASC");
+  public function listar($municipios_id){
+    return $this->find("municipios_id=$municipios_id","order: 4 ASC");
     }
 }
 ?>
