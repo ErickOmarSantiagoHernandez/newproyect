@@ -7,24 +7,24 @@
              <div class="box-body">
                 <div class="col-md-6 form-group">
                     <label  class="text-blue text-center">Expediente Penal  </label>
-                        <?php echo Form::number('exppenal','id="expediente_id" class="form-control" onblur="convierte(this)"') ?>
+                      <input type="number" name="ordenes[exppenal]" class="form-control">
                 </div>
                 <div class="col-md-6 form-group">
                     <label  class="text-blue text-center">Año Penal  </label>
-                    <?php echo Form::number('anipenal','id="anio_id" class="form-control" onblur="convierte(this)"') ?>
+                    <input type="number" name="ordenes[anipenal]" class="form-control">
                 </div>
                 <div class="col-md-6 form-group" >
                     <label  class="text-blue text-center">Juzgado  </label>
-                    <?php echo Form::dbSelect('juzgados_id','juzgado',array('juzgados','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>
+                    <?php echo Form::dbSelect('ordenes.juzgados','juzgado',array('juzgados','listar'),'Seleccione','class="form-control" style="width: 100%"') ?>
                 </div>
                 <div class="col-md-6 form-group">
                     <label  class="text-blue text-center">Tipo de Orden </label>
-                    <?php echo Form::dbSelect('tiposoa_id','descripcion',array('tiposoa','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>                   
+                    <?php echo Form::dbSelect('ordenes.tiposoa','descripcion',array('tiposoa','listar'),'Seleccione','class="form-control" style="width: 100%"') ?>                   
                 </div>
                 <div class="col-md-12 form-group">
-                    <label class="control-label col-md-2" for="distritos_id">Distrito </label>
+                    <label class="control-label col-md-2">Distrito </label>
                     <div class="col-md-10">
-                    <?php echo Form::dbSelect('distritos_id','distrito',array('distritos','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>
+                    <?php echo Form::dbSelect('distritos_id','distrito',array('distritos','listar'),'Seleccione',' class="form-control"  style="width: 100%"') ?>
                 </div>
                 </div>
                 <div class="col-md-12 form-group" >
@@ -37,51 +37,50 @@
                 </div><hr>
                 <div class="col-md-2 form-group">
                     <label class="text-blue text-center">Averiguacion </label>
-                    <?php echo Form::number('numaver','class="form-control" onblur="convierte(this)" data-toggle="tooltip" title="Anexado a plataforma Mexico"') ?>
+                    <input type="number" name="ordenes[averiguacion]" class="mayuscula form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">
                 </div>
                 <div class="col-md-6 form-group">
                     <label class="text-blue text-center">Agencia </label>
-                    <?php echo Form::dbSelect('agencias_id','agencia',array('agencias','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>               
+                    <?php echo Form::dbSelect('ordenes.agencias','agencia',array('agencias','listar'),'Seleccione','class="form-control" style="width: 100%"') ?>               
                 </div>
                 <div class="col-md-2 form-group">
                     <label class="text-blue text-center">Año </label>
-                    <?php echo Form::number('aniagen','class="form-control" onblur="convierte(this)"') ?>                  
+                    <input type="number" name="ordenes[aniagen]" class="form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                
                 </div>
                 <div class="col-md-2 form-group">
                     <label class="text-blue text-center">Turno </label>
-                    <?php echo Form::number('turno','class="form-control" onblur="convierte(this)"') ?>                                    
+                    <input type="number" name="ordenes[turno]" class="form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                
                 </div>
                 <div class="col-md-12 form-group">
                     <label class="text-blue text-center">Fecha de Libramiento </label>
-                    <?php echo Form::date('feclib','class="form-control" onblur="convierte(this)"') ?> 
+                    <input type="date" name="ordenes[feclib]" class="form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                    
                 </div>
                 <div class="col-md-6 form-group">
                     <label class="text-blue text-center">Fecha de recibido</label>
-                    <?php echo Form::date('fecrec','class="form-control" onblur="convierte(this)"') ?>
+                    <input type="date" name="ordenes[fecrec]" class="form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                    
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Oficio recibido </label>
-                    <?php echo Form::number('ofirec','class="form-control" onblur="convierte(this)"') ?>                 
+                    <input type="text" name="ordenes[ofirec]" class="mayuscula form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                   
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Fecha entrega </label>
-                    <?php echo Form::date('fecentpj','class="form-control" onblur="convierte(this)"') ?>                  
+                    <input type="date" name="ordenes[fecentpj]" class="form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                    
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Oficio recibido </label>
-                    <?php echo Form::number('ofientpj','class="form-control" onblur="convierte(this)"') ?>                 
+                    <input type="text" name="ordenes[ofientpj]" class=" mayuscula form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                                        
                 </div>
                 <div class="col-md-12 form-group">
                     <label>Sintesis de los hechos </label>
-                    <?php echo Form::textarea('sintesis','class="form-control" onblur="convierte(this)"') ?>                 
+                    <input type="textarea" name="ordenes[sintesis]" class="mayuscula form-control"  data-toggle="tooltip" title="Anexado a plataforma Mexico">                                                                        
                 </div>
-                <div class="row form-group" >
-                    <div class="col-md-2 col-xs-12 col-sm-2 col-md-offset-5">
-                    <button type="submit"  name="boton_buscar" id="boton_buscar" value="enviado" class="btn btn-success btn-flat">Buscar</button>
-                </div>
-                    <div class="col-md-2 col-xs-12 col-sm-2 col-lg-2">
-                    <button class="btn btn-warning btn-flat" type="reset">Limpiar</button>
-        </div>
+                <div class="box-footer">
+            	<div class="col-lg-3 col-md-3 pull-right">
+      		<button type="reset" class="btn btn-warning btn-flat" style="margin-right:10px;">Limpiar</button>
+        	<button type="submit" value="formulario" name="formulario" class="btn btn-success btn-flat">Registrar</button>
+        </div> 
+      </div>
       </div>
     <?php echo Form::close(); ?>
              </div>                   
