@@ -8,7 +8,7 @@ class Agencias extends ActiveRecord
   }  
   
   public function listar(){
-    $sql = "SELECT id, concat(codagen,'.- ',agencia)  as agencia FROM agencias";
+    $sql = "SELECT id, concat(codagen,'  -  ',agencia)  as agencia FROM agencias";
     return $this->find_all_by_sql($sql);
   } 
 

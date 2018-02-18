@@ -1,61 +1,78 @@
 <?= Tag::js('jquery/jquery.min'); ?>
 
 <section class="content">
+    <?php echo Form::open("ordenes/crearorden",'POST','class="form-group"'); ?>
       <div class="box box-primary">
               <h3 class="box-title">Datos Orden de Aprehensión</h3>      
-             <div class="box-body">                  
+             <div class="box-body">
+                <div class="col-md-6 form-group">
+                    <label  class="text-blue text-center">Expediente Penal  </label>
+                        <?php echo Form::number('exppenal','id="expediente_id" class="form-control" onblur="convierte(this)"') ?>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label  class="text-blue text-center">Año Penal  </label>
+                    <?php echo Form::number('anipenal','id="anio_id" class="form-control" onblur="convierte(this)"') ?>
+                </div>
+                <div class="col-md-6 form-group" >
+                    <label  class="text-blue text-center">Juzgado  </label>
+                    <?php echo Form::dbSelect('juzgados_id','juzgado',array('juzgados','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label  class="text-blue text-center">Tipo de Orden </label>
+                    <?php echo Form::dbSelect('tiposoa_id','descripcion',array('tiposoa','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>                   
+                </div>
                 <div class="col-md-12 form-group">
-                    <label class="control-label col-md-2" for="distritos_id">Distrito : </label>
+                    <label class="control-label col-md-2" for="distritos_id">Distrito </label>
                     <div class="col-md-10">
                     <?php echo Form::dbSelect('distritos_id','distrito',array('distritos','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>
                 </div>
                 </div>
                 <div class="col-md-12 form-group" >
-                    <label class="control-label col-md-2" for="municipios_id">Municipio : </label>
+                    <label class="control-label col-md-2" for="municipios_id">Municipio  </label>
                     <div class="col-md-10" id='div_municipios'></div>
                 </div>
                 <div class="col-md-12 form-group">
-                    <label class="control-label col-md-2" for="localidades_id">Localidad : </label>
+                    <label class="control-label col-md-2" for="localidades_id">Localidad  </label>
                     <div class="col-md-10" id='div_localidades'></div>
                 </div><hr>
                 <div class="col-md-2 form-group">
-                    <label class="text-blue text-center">Averiguacion :</label>
-                    <?php echo Form::number('numaver','class="form-control" onblur="convierte(this)"') ?>
+                    <label class="text-blue text-center">Averiguacion </label>
+                    <?php echo Form::number('numaver','class="form-control" onblur="convierte(this)" data-toggle="tooltip" title="Anexado a plataforma Mexico"') ?>
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="text-blue text-center">Agencia :</label>
+                    <label class="text-blue text-center">Agencia </label>
                     <?php echo Form::dbSelect('agencias_id','agencia',array('agencias','listar'),'Seleccione','class="form-control select2" style="width: 100%"') ?>               
                 </div>
                 <div class="col-md-2 form-group">
-                    <label class="text-blue text-center">Año :</label>
+                    <label class="text-blue text-center">Año </label>
                     <?php echo Form::number('aniagen','class="form-control" onblur="convierte(this)"') ?>                  
                 </div>
                 <div class="col-md-2 form-group">
-                    <label class="text-blue text-center">Turno :</label>
+                    <label class="text-blue text-center">Turno </label>
                     <?php echo Form::number('turno','class="form-control" onblur="convierte(this)"') ?>                                    
                 </div>
                 <div class="col-md-12 form-group">
-                    <label >Fecha de Libramiento </label>
+                    <label class="text-blue text-center">Fecha de Libramiento </label>
                     <?php echo Form::date('feclib','class="form-control" onblur="convierte(this)"') ?> 
                 </div>
                 <div class="col-md-6 form-group">
-                    <label >Fecha de recibido</label>
+                    <label class="text-blue text-center">Fecha de recibido</label>
                     <?php echo Form::date('fecrec','class="form-control" onblur="convierte(this)"') ?>
                 </div>
                 <div class="col-md-6 form-group">
-                    <label>Oficio recibido :</label>
+                    <label>Oficio recibido </label>
                     <?php echo Form::number('ofirec','class="form-control" onblur="convierte(this)"') ?>                 
                 </div>
                 <div class="col-md-6 form-group">
-                    <label>Fecha entrega :</label>
+                    <label>Fecha entrega </label>
                     <?php echo Form::date('fecentpj','class="form-control" onblur="convierte(this)"') ?>                  
                 </div>
                 <div class="col-md-6 form-group">
-                    <label>Oficio recibido :</label>
+                    <label>Oficio recibido </label>
                     <?php echo Form::number('ofientpj','class="form-control" onblur="convierte(this)"') ?>                 
                 </div>
                 <div class="col-md-12 form-group">
-                    <label>Sintesis de los hechos :</label>
+                    <label>Sintesis de los hechos </label>
                     <?php echo Form::textarea('sintesis','class="form-control" onblur="convierte(this)"') ?>                 
                 </div>
                 <div class="row form-group" >
@@ -75,7 +92,7 @@
     var distritos_id = $('#distritos_id').val();
      $.ajax({
        type: "POST",
-       url: "<?php echo PUBLIC_PATH . 'orden/getMunicipios/'; ?>",
+       url: "<?php echo PUBLIC_PATH . 'ordenes/getMunicipios/'; ?>",
        data: "distritos_id=" + distritos_id,
        success: function (html) {
          $("#div_municipios").html(html);

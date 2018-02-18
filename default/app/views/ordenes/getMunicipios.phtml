@@ -5,7 +5,7 @@
     var municipios_id = $('#municipios_id').val();
       $.ajax({
         type: "POST",
-        url: "<?php echo PUBLIC_PATH . 'orden/getLocalidades/'; ?>",
+        url: "<?php echo PUBLIC_PATH . 'ordenes/getLocalidades/'; ?>",
         data: "municipios_id=" + municipios_id,
           success: function (html) {
             $("#div_localidades").html(html);
